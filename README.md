@@ -84,7 +84,7 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">choice(A)\choice(B)</td>
+<td class="org-left">behavior(A)\behavior(B)</td>
 <td class="org-right">Cooperation</td>
 <td class="org-right">Defection</td>
 </tr>

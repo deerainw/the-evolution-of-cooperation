@@ -1,0 +1,5 @@
+*.pyc
+.idea/
+.vscode/
+.vs/
+test.py

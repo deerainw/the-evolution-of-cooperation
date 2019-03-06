@@ -1,3 +1,5 @@
+# coding=utf-8
+
 """
 The Evolution of Cooperation 主程序
 

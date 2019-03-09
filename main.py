@@ -7,7 +7,7 @@ The Evolution of Cooperation 主程序
 """
 
 from pkg.template import Island, Human
-from pkg.island_stats import tactics_stats, camp_stats
+from pkg.island_stats import tactics_stats, camp_stats, get_result
 import numpy as np
 import pandas as pd
 
@@ -18,42 +18,6 @@ human_amount = int(island_len**2 / 3)  # 人类总数量
 camp_list = ["魏", "蜀", "吴", "晋"]  # 阵营列表
 tactics_list = ["阵营虚无主义", "阵营沙文主义", "极端反沙文主义"]  # 策略列表
 init_money = 0  # 每个人的初始金钱数
-
-
-def get_result(island: Island):
-    """
-    统计模拟完成后岛上所有人的情况
-
-    -----
-    :param island: 岛屿
-    :return: 返回一个 DataFrame，三列分别代表每个人的阵营、策略和金钱
-    """
-    all_camp = list()
-    all_tactics = list()
-    all_money = list()
-
-    length = island.length
-    for x in range(length):
-        for y in range(length):
-            if bali.grid[x, y].__class__.__name__ == 'Human':
-                this_guy: Human = bali.grid[x, y]
-                # 收集每一个人的信息
-                all_camp.append(this_guy.camp)
-                all_tactics.append(this_guy.tactics)
-                all_money.append(this_guy.money)
-
-    all_camp = np.array(all_camp)
-    all_tactics = np.array(all_tactics)
-    all_money = np.array(all_money)
-
-    result_mx = np.vstack((all_camp,
-                           all_tactics,
-                           all_money)).T
-
-    result_df = pd.DataFrame(data=result_mx, columns=["camp", "tactics", "money"])
-    result_df['money'] = result_df['money'].astype('int')
-
-    return result_df
 
 
 def day_after_day(day: int, island: Island):

@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 # 模拟参数
-days = 500  # 持续天数
+days = 100  # 持续天数
 island_len = 20  # 边界长度
 human_amount = int(island_len**2 / 3)  # 人类总数量
 camp_list = ["魏", "蜀", "吴", "晋"]  # 阵营列表

@@ -8,8 +8,6 @@ The Evolution of Cooperation 主程序
 
 from pkg.template import Island, Human
 from pkg.island_stats import tactics_stats, camp_stats, get_result
-import numpy as np
-import pandas as pd
 
 # 模拟参数
 days = 100  # 持续天数

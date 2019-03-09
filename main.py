@@ -56,7 +56,7 @@ def get_result(island: Island):
     return result_df
 
 
-def main(day: int):
+def day_after_day(day: int):
     """
     主函数
     -----
@@ -106,7 +106,7 @@ def main(day: int):
 if __name__ == "__main__":
     # 运行主函数
     for i in range(1, days):
-        main(day=i)
+        day_after_day(day=i)
 
     # 获得结果
     df_result = get_result(bali)

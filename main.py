@@ -62,9 +62,9 @@ if __name__ == "__main__":
     bali = Island(length=island_len)
     # 放置人类
     bali.set_human(num=human_amount,
-                    camp=camp_list,
-                    tactics=tactics_list,
-                    money=init_money)
+                   camp=camp_list,
+                   tactics=tactics_list,
+                   money=init_money)
     # 运行主函数
     for i in range(1, days):
         day_after_day(day=i, island=bali)

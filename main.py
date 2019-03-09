@@ -56,7 +56,7 @@ def get_result(island: Island):
     return result_df
 
 
-def day_after_day(day: int):
+def day_after_day(day: int, island: Island):
     """
     主函数
     -----
@@ -64,18 +64,8 @@ def day_after_day(day: int):
     Parameters
     -----
     :param day: 当前天数
+    :param island: 岛屿对象
     """
-
-    # 初始化岛屿
-    if day == 1:
-        global bali
-        # 生成岛屿
-        bali = Island(length=island_len)
-        # 放置人类
-        bali.set_human(num=human_amount,
-                       camp=camp_list,
-                       tactics=tactics_list,
-                       money=init_money)
 
     # 弱引用人类对象列表无法生存，所以以下代码改回使用循环
 
@@ -85,28 +75,35 @@ def day_after_day(day: int):
     # 每个人都轮流搜索一下四周的人，四周有人的话随机选一个来接触
     for x in range(island_len):
         for y in range(island_len):
-            if bali.grid[x, y].__class__.__name__ == 'Human':
-                this_guy = bali.grid[x, y]
+            if island.grid[x, y].__class__.__name__ == 'Human':
+                this_guy = island.grid[x, y]
                 target_xy = this_guy.search()
                 if target_xy is not None:
-                    this_guy.contact(bali.grid[target_xy[0], target_xy[1]])
+                    this_guy.contact(island.grid[target_xy[0], target_xy[1]])
 
     # 每个人轮流移动
     for x in range(island_len):
         for y in range(island_len):
-            if bali.grid[x, y].__class__.__name__ == 'Human':
-                this_guy = bali.grid[x, y]
+            if island.grid[x, y].__class__.__name__ == 'Human':
+                this_guy = island.grid[x, y]
                 this_guy.move()
 
     # 输出岛屿状态
     print("第 " + str(day) + " 天")
-    print(bali)
+    print(island)
 
 
 if __name__ == "__main__":
+    # 初始化岛屿
+    bali = Island(length=island_len)
+    # 放置人类
+    bali.set_human(num=human_amount,
+                    camp=camp_list,
+                    tactics=tactics_list,
+                    money=init_money)
     # 运行主函数
     for i in range(1, days):
-        day_after_day(day=i)
+        day_after_day(day=i, island=bali)
 
     # 获得结果
     df_result = get_result(bali)
